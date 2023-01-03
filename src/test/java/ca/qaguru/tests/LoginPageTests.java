@@ -2,6 +2,7 @@ package ca.qaguru.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -51,4 +52,31 @@ public class LoginPageTests {
         Assert.assertEquals(msg,"Invalid credentials");
 
     }
+    @Test (enabled = false)
+    public  void exceptionHandling()
+    {
+        try
+        {
+            float no = 3/0;
+            driver.findElement(By.xpath("//input[@name=\"sername\"]"));
+        }
+        catch(ArithmeticException exception) {
+            System.out.println("Arithematic Exception");
+            // System.out.println("Exception caught - " + exception.getMessage() );
+            //exception.printStackTrace();
+        }
+        catch(NoSuchElementException exception)
+            {
+                System.out.println("No such element");
+            }
+        catch(Exception exception)
+        {
+            System.out.println("Some exception occured....");
+        }
+        finally {
+            System.out.println("Iam finally block");
+        }
+        System.out.println("The end of test case");
+    }
+
 }
